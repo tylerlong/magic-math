@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "upgrade": "yarn-upgrade-all",
-    "build": "parcel index.html"
+    "build": "parcel index.html",
+    "release": "parcel build ./index.html -d docs --public-url ./"
   },
   "devDependencies": {
     "parcel-bundler": "^1.6.2",
