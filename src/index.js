@@ -1,4 +1,5 @@
 import Vue from 'vue/dist/vue.js'
+import { findMatches } from './utils'
 
 const app = new Vue({
   el: '#app',
@@ -34,28 +35,7 @@ const app = new Vue({
 
       numbers = numbers.slice(start - 1, start + 3)
       console.log(numbers)
-
-      const matches = []
-      for (let i = 0; i < 10; i++) {
-        for (let j = i + 2; j < 10; j++) {
-          for (let k = j + 2; k < 10; k++) {
-            for (let col of [i, j, k]) {
-              const i1 = numbers[0][col]
-              const idx = numbers[1].indexOf(i1)
-              if (idx === -1) {
-                continue
-              }
-              const i3 = numbers[2][idx]
-              const i4 = numbers[3][idx]
-              if (i3 === numbers[1][i] || i3 === numbers[1][j] || i3 === numbers[1][k]) {
-                if (i4 === numbers[2][i] || i4 === numbers[2][j] || i4 === numbers[2][k]) {
-                  matches.push([i + 1, j + 1, k + 1, col + 1, numbers[0][idx]])
-                }
-              }
-            }
-          }
-        }
-      }
+      const matches = findMatches(numbers)
 
       let str = '比较的 4 行数据为：\n'
       str += '1	2	3	4	5	6	7	8	9	10\n'
