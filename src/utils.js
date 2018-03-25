@@ -32,4 +32,26 @@ const findMatches = lines => {
   return matches
 }
 
-module.exports = { findMatches }
+const validateInput = input => {
+  const lines = input.split(/(?:\s*\n\s*)+/).filter(line => line.length > 0)
+  if (lines.length < 2) {
+    return { result: false, data: `至少要 2 行数据, 你只输入了 ${lines.length} 行` }
+  }
+  let numbers = []
+  for (const line of lines) {
+    let items = line.split(/[ ]*(?:,|\t| )[ ]*/).filter(item => item.length > 0)
+    if (items.length < 10) {
+      return { result: false, data: `每行至少有 10 条数据，这一行数据不够：${line}` }
+    }
+
+    const digits = items.map(digit => parseInt(digit)).filter(digit => !isNaN(digit))
+    if (digits.length < items.length) {
+      return { result: false, data: `这一行有非法数据：${line}` }
+    }
+
+    numbers.push(digits)
+  }
+  return { result: true, data: numbers }
+}
+
+module.exports = { findMatches, validateInput }

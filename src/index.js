@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue.js'
-import { findMatches } from './utils'
+import { findMatches, validateInput } from './utils'
 
 const app = new Vue({
   el: '#app',
@@ -9,24 +9,11 @@ const app = new Vue({
   },
   computed: {
     result: function () {
-      const lines = this.input.split(/(?:\s*\n\s*)+/).filter(line => line.length > 0)
-      if (lines.length < 4) {
-        return `至少要 4 行数据, 你只输入了 ${lines.length} 行`
+      const { result, data } = validateInput(this.input)
+      if (result === false) {
+        return data
       }
-      let numbers = []
-      for (const line of lines) {
-        let items = line.split(/[ ]*(?:,|\t| )[ ]*/).filter(item => item.length > 0)
-        if (items.length < 10) {
-          return `每行至少有 10 条数据，这一行数据不够：${line}`
-        }
-
-        const digits = items.map(digit => parseInt(digit)).filter(digit => !isNaN(digit))
-        if (digits.length < items.length) {
-          return `这一行有非法数据：${line}`
-        }
-
-        numbers.push(digits)
-      }
+      let numbers = data
 
       const start = parseInt(this.start)
       if (start < 1 || start + 3 > numbers.length) {
