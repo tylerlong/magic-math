@@ -85,3 +85,7 @@ app.input = `
 5	3	4	6	8	2	7	1	10	9
 6	5	9	7	4	10	8	2	1	3
 `.trim()
+
+app.$watch('input', () => {
+  app.start = 1
+})
