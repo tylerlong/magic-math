@@ -35,7 +35,7 @@ const app = new Vue({
       str += lines.map(line => line.join('\t')).join('\n')
       str += '\n\n比较结果为：\n'
       str += '==================================================================================\n'
-      str += matches.map(match => `第 ${match[0]}、${match[1]}、${match[2]} 列根据第 ${match[3]} 列筛选得出结果：${match[4]}`).join('\n')
+      str += matches.map(match => `第 ${match[0]}、${match[1]}、${match[2]} 列根据第 ${match[3]} 列筛选得出第 ${match[4]} 列符合要求，结果是 ${match[5]}`).join('\n')
       return str
     }
   }

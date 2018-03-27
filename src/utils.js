@@ -7,6 +7,9 @@ const findMatches = lines => {
     for (let j = i + 2; j < 10; j++) {
       for (let k = j + 2; k < 10; k++) {
         for (let index = 0; index < 10; index++) {
+          if (index === i || index === j || index === k) {
+            continue
+          }
           let match = true
           for (let l = 0; l < lines.length - 1; l++) {
             const number = lines[l + 1][index]
@@ -23,7 +26,7 @@ const findMatches = lines => {
             } else if (lines[1][index] === lines[0][k]) {
               according = k
             }
-            matches.push([i + 1, j + 1, k + 1, according + 1, lines[0][index]])
+            matches.push([i + 1, j + 1, k + 1, according + 1, index + 1, lines[0][index]])
           }
         }
       }
