@@ -1,6 +1,12 @@
-textarea,
-pre {
+textarea {
     -moz-tab-size : 8;
+      -o-tab-size : 16;
+         tab-size : 16;
+}
+
+
+pre {
+  -moz-tab-size : 8;
       -o-tab-size : 8;
          tab-size : 8;
 }
