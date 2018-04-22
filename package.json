@@ -16,5 +16,10 @@
     "element-ui": "^2.3.6",
     "moment": "^2.22.1",
     "vue": "^2.5.16"
+  },
+  "standard": {
+    "ignore": [
+      "/docs/"
+    ]
   }
 }

@@ -36,7 +36,7 @@ const app = new Vue({
       const matches = findMatches(lines)
 
       let str = `比较的 ${count} 行数据为：\n`
-      str += '1	2	3	4	5	6	7	8	9	10\n'
+      str += '1\t2\t3\t4\t5\t6\t7\t8\t9\t10\n'
       str += '==================================================================================\n'
       str += lines.map(line => line.join('\t')).join('\n')
       str += '\n\n比较结果为：\n'
@@ -82,18 +82,18 @@ const app = new Vue({
 // below is for testing purpose
 
 app.input = `
-1	6	7	5	3	2	4	10	8	9
-8	6	7	3	5	9	1	2	4	10
-5	3	4	6	8	2	7	1	10	9
-6	5	9	7	4	10	8	2	1	3
-1	6	7	5	3	2	4	10	8	9
-8	6	7	3	5	9	1	2	4	10
-5	3	4	6	8	2	7	1	10	9
-6	5	9	7	4	10	8	2	1	3
-1	6	7	5	3	2	4	10	8	9
-8	6	7	3	5	9	1	2	4	10
-5	3	4	6	8	2	7	1	10	9
-6	5	9	7	4	10	8	2	1	3
+1\t6\t7\t5\t3\t2\t4\t10\t8\t9
+8\t6\t7\t3\t5\t9\t1\t2\t4\t10
+5\t3\t4\t6\t8\t2\t7\t1\t10\t9
+6\t5\t9\t7\t4\t10\t8\t2\t1\t3
+1\t6\t7\t5\t3\t2\t4\t10\t8\t9
+8\t6\t7\t3\t5\t9\t1\t2\t4\t10
+5\t3\t4\t6\t8\t2\t7\t1\t10\t9
+6\t5\t9\t7\t4\t10\t8\t2\t1\t3
+1\t6\t7\t5\t3\t2\t4\t10\t8\t9
+8\t6\t7\t3\t5\t9\t1\t2\t4\t10
+5\t3\t4\t6\t8\t2\t7\t1\t10\t9
+6\t5\t9\t7\t4\t10\t8\t2\t1\t3
 `.trim()
 
 app.$watch('input', () => {
