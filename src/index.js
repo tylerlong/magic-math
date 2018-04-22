@@ -1,5 +1,11 @@
 import Vue from 'vue/dist/vue.js'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import moment from 'moment'
+
 import { findMatches, validateInput } from './utils'
+
+Vue.use(ElementUI)
 
 const app = new Vue({
   el: '#app',
@@ -38,6 +44,38 @@ const app = new Vue({
       str += matches.map(match => `第 ${match[0]}、${match[1]}、${match[2]} 列根据第 ${match[3]} 列筛选得出第 ${match[4]} 列符合要求，结果是 ${match[5]}`).join('\n')
       return str
     }
+  },
+  methods: {
+    promptForPassword () {
+      this.$prompt('请输入你的密码', '安全验证', {
+        showCancelButton: false,
+        showClose: false,
+        confirmButtonText: '确定',
+        inputPattern: /password\d{8}/,
+        inputValidator: (input) => {
+          if (input.substring(8) === moment().format('YYYYMMDD')) {
+            return true
+          }
+          return false
+        },
+        inputErrorMessage: '密码不正确',
+        lockScroll: true,
+        closeOnClickModal: false,
+        closeOnPressEscape: false,
+        closeOnHashChange: false,
+        inputType: 'password'
+      }).then(value => {
+        // this.$message({
+        //   type: 'success',
+        //   message: 'Your email is:' + value
+        // })
+      }).catch(() => {
+        // this.$message({
+        //   type: 'info',
+        //   message: 'Input canceled'
+        // })
+      })
+    }
   }
 })
 
@@ -61,3 +99,8 @@ app.input = `
 app.$watch('input', () => {
   app.start = 1
 })
+
+app.promptForPassword()
+setInterval(() => {
+  app.promptForPassword()
+}, 43200000)
