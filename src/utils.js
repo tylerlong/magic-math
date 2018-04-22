@@ -1,4 +1,4 @@
-const findMatches = lines => {
+export const findMatches = lines => {
   const matches = []
   if (lines.length < 2) {
     return matches
@@ -35,7 +35,7 @@ const findMatches = lines => {
   return matches
 }
 
-const validateInput = input => {
+export const validateInput = input => {
   const lines = input.split(/(?:\s*\n\s*)+/).filter(line => line.length > 0)
   if (lines.length < 2) {
     return { result: false, data: `至少要 2 行数据, 你只输入了 ${lines.length} 行` }
@@ -56,5 +56,3 @@ const validateInput = input => {
   }
   return { result: true, data: numbers }
 }
-
-module.exports = { findMatches, validateInput }
